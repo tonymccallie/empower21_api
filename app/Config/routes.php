@@ -5,6 +5,8 @@
 	Router::connect('/dashboard',array('controller'=>'users','action'=>'dashboard'));
 
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	Router::mapResources('posts');
+	Router::parseExtensions();
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

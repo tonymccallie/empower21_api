@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>AppInstall</title>
+	<title>Empowered 21</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -58,7 +58,7 @@
 				</button>
 				<!-- /Mobile Menu Button -->
 
-				<?php echo $this->Html->link('<i class="icon-html5"></i> AppInstall','/',array('escape'=>false,'class'=>'brand')) ?>
+				<?php echo $this->Html->link('<i class="icon-html5"></i> Empowered 21','/',array('escape'=>false,'class'=>'brand')) ?>
 
 				<div class="nav-collapse collapse pull-right">
 					<ul class="nav">
@@ -66,6 +66,7 @@
 						<?php if(Authsome::get('Role.name') == 'Admin'): ?>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="admin_dropdown">Admin <b class="caret"></b></a>
 							<ul class="dropdown-menu">
+								<li><?php echo $this->Html->link('Posts','/admin/posts') ?></li>
 								<li><?php echo $this->Html->link('Users','/admin/users') ?></li>
 							</ul>
 						</li>

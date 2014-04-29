@@ -6,7 +6,7 @@ class AppController extends Controller {
 
 	public $components = array(
 		'Authsome' => array('model' => 'User'),
-		'Session','Email','Cookie',
+		'Session','Email','Cookie','RequestHandler'
 	);
 	
 	public $user = array();
@@ -22,7 +22,7 @@ class AppController extends Controller {
 		}
 	*/
 		$email = Authsome::get('User.email');
-		if ((!User::allowed($this->name, $this->action))&&(empty($this->request->params['ajax']))) {
+		if ((!User::allowed($this->name, $this->action))&&(empty($this->request->params['ext']))) {
 			$this->Session->write('requested_url','/'.$this->request->url);
 			if($email == 'guest@greyback.net') {
 				$this->Session->setFlash('Oops! The page you were trying to reach is restricted. Please log in to continue.','alert');
