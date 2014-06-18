@@ -16,6 +16,39 @@ class PostsController extends AppController {
 		));
 	}
 	
+	public function today() {
+		$last = $this->Post->find('first',array(
+			'order' => array('Post.start DESC')
+		));
+		$last_date = $last['Post']['start'];
+		$posts = $this->Post->find('all',array(
+			'conditions' => array(
+				'Post.start' => date('Y-m-d')
+			)
+		));
+		
+		if((time() < strtotime($last_date))&&($posts)) {
+			$posts = $this->Post->find('all',array(
+				'conditions' => array(
+					'Post.start' => date('Y-m-d')
+				)
+			));
+		} else {
+			$posts = array(
+				$last
+			);
+		}
+		foreach($posts as $k => $post) {
+			$tmpdate = strtotime($post['Post']['start']);
+			$posts[$k]['Post']['day'] = date('d',$tmpdate);
+			$posts[$k]['Post']['month'] = strtoupper(date('M',$tmpdate));
+		}
+		$this->set(array(
+			'posts' => $posts,
+			'_serialize' => array('posts')
+		));
+	}
+	
 	public function admin_index() {
 		$posts = $this->paginate();
 		$this->set(compact('posts'));
